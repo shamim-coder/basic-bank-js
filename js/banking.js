@@ -1,36 +1,27 @@
-// Deposit Money add handler
-const depositBtn = document.getElementById("deposit-btn");
-const depositTotal = document.getElementById("deposit-total");
-const balanceTotal = document.getElementById("balance-total");
-const withdrawTotal = document.getElementById("withdraw-total");
-depositBtn.addEventListener("click", () => {
-    //add to deposit balance
-    let depositAmount = parseFloat(depositBtn.previousElementSibling.value);
-    let depositTotalAmount = parseFloat(depositTotal.innerText) + depositAmount;
-    depositTotal.innerText = depositTotalAmount;
-
-    // sum with balance
-    let totalBalance = parseFloat(balanceTotal.innerText) + depositAmount;
+function getBalance(inputAmountId, totalAmountId, isSumOrSub) {
+    const balanceTotal = document.getElementById("balance-total");
+    const showAmount = document.getElementById(totalAmountId);
+    const inputAmount = document.getElementById(inputAmountId);
+    let totalAmount = parseFloat(showAmount.innerText) + parseFloat(inputAmount.value);
+    showAmount.innerText = totalAmount;
+    let totalBalance;
+    if (isSumOrSub) {
+        totalBalance = parseFloat(balanceTotal.innerText) + parseFloat(inputAmount.value);
+    } else {
+        totalBalance = parseFloat(balanceTotal.innerText) - parseFloat(inputAmount.value);
+    }
     balanceTotal.innerText = totalBalance;
+    inputAmount.value = "";
+}
 
-    // clear input value when deposit done
-    depositBtn.previousElementSibling.value = "";
+// Deposit Money add handler
+document.getElementById("deposit-btn").addEventListener("click", () => {
+    getBalance("deposit-amount", "deposit-total", true);
 });
 
 // Withdraw Money Handler
-const withdrawBtn = document.getElementById("withdraw-btn");
-
-withdrawBtn.addEventListener("click", () => {
-    let withdrawAmount = parseFloat(withdrawBtn.previousElementSibling.value);
-    let totalWithdraw = parseFloat(withdrawTotal.innerText);
-    withdrawTotal.innerText = totalWithdraw + withdrawAmount;
-
-    // Remaining Balance Calculate
-    let remainingBalance = parseFloat(balanceTotal.innerText) - withdrawAmount;
-    balanceTotal.innerText = remainingBalance;
-
-    // clear input value when withdraw done
-    withdrawBtn.previousElementSibling.value = "";
+document.getElementById("withdraw-btn").addEventListener("click", () => {
+    getBalance("withdraw-amount", "withdraw-total", false);
 });
 
 document.getElementById("home").addEventListener("click", () => {
