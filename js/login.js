@@ -6,7 +6,7 @@ loginBtn.addEventListener("click", () => {
         emailField.value == "wpshamim@gmail.com" &&
         passwordField.value == "12345"
     ) {
-        window.location.pathname = "/banking.html";
+        window.location.href = "/banking.html";
     } else {
         passwordField.style.border = "1px solid red";
         emailField.style.border = "1px solid red";

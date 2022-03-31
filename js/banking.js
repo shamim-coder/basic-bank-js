@@ -32,3 +32,7 @@ withdrawBtn.addEventListener("click", () => {
     // clear input value when withdraw done
     withdrawBtn.previousElementSibling.value = "";
 });
+
+document.getElementById("home").addEventListener("click", () => {
+    window.location.href = window.location.origin;
+});
