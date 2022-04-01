@@ -1,11 +1,11 @@
-function getBalance(inputAmountId, totalAmountId, isSumOrSub) {
+function getBalance(inputAmountId, totalAmountId, isAdd) {
     const balanceTotal = document.getElementById("balance-total");
     const showAmount = document.getElementById(totalAmountId);
     const inputAmount = document.getElementById(inputAmountId);
     let totalAmount = parseFloat(showAmount.innerText) + parseFloat(inputAmount.value);
     showAmount.innerText = totalAmount;
     let totalBalance;
-    if (isSumOrSub) {
+    if (isAdd) {
         totalBalance = parseFloat(balanceTotal.innerText) + parseFloat(inputAmount.value);
     } else {
         totalBalance = parseFloat(balanceTotal.innerText) - parseFloat(inputAmount.value);
